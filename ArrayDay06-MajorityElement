@@ -1,0 +1,23 @@
+#You are given an array of integer arr[] where each number represents a vote to a candidate. Return the candidates that have votes greater than one-third of the total votes, If there's not a majority vote, return an empty array. 
+#
+#Note: The answer should be returned in an increasing format.
+
+class Solution:
+    # Function to find the majority elements in the array
+    def findMajority(self, arr):
+        #Your Code goes here.
+        n = len(arr)
+        freq = {}
+        res = []
+        
+        for ele in arr:
+            freq[ele] = freq.get(ele,0) + 1
+            
+        for ele, cnt in freq.items():
+            if cnt > n//3:
+                res.append(ele)
+                
+        if len(res) == 2 and res[0]>res[1]:
+            res[0], res[1] = res[1], res[0]
+            
+        return res
